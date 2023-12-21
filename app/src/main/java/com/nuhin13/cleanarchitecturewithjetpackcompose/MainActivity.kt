@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.room.Room
 import com.nuhin13.cleanarchitecturewithjetpackcompose.db.DummyProjectDatabase
 import com.nuhin13.cleanarchitecturewithjetpackcompose.db.UserInfo
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation.LoginScreen
 import com.nuhin13.cleanarchitecturewithjetpackcompose.ui.theme.CleanArchitectureWithJetpackComposeTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -38,7 +39,8 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android", db = dummyProjectDatabase)
+                    //Greeting("Android", db = dummyProjectDatabase)
+                    LoginScreen()
                 }
             }
         }

@@ -110,5 +110,8 @@ dependencies {
 
     ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
+    //coil dependency
+    implementation("io.coil-kt:coil-compose:2.5.0")
+
 }
 

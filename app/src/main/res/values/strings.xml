@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CleanArchitectureWithJetpackCompose</string>
+
+    <string name="login_upper_text">Welcome to the BUGI World</string>
+    <string name="login_new_account">Create New Account</string>
+    <string name="login_skip">Skip</string>
+    <string name="login">Login</string>
 </resources>

@@ -29,12 +29,13 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.nuhin13.cleanarchitecturewithjetpackcompose.R
 import com.nuhin13.cleanarchitecturewithjetpackcompose.data.ConstantData
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavHostController) {
 
     val imageUrl = ConstantData.imageList[random()]
     var phone by rememberSaveable { mutableStateOf("") }
@@ -93,7 +94,7 @@ fun LoginScreen() {
         Row(
             modifier = Modifier
                 .align(Alignment.End)
-                .padding(end = 16.dp, bottom = 40.dp)
+                .padding(top = 24.dp ,end = 16.dp, bottom = 40.dp)
                 .weight(1f, false),
         ) {
             ClickableText(
@@ -119,11 +120,11 @@ fun LoginScreen() {
 @Preview(showBackground = true)
 @Composable
 fun LoginPreview() {
-    LoginScreen()
+    //LoginScreen()
 }
 
 fun random(): Int {
-    return (0..14).random()
+    return (0..13).random()
 }
 
 

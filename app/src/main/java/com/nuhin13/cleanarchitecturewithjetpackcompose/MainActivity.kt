@@ -12,11 +12,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import androidx.room.Room
 import com.nuhin13.cleanarchitecturewithjetpackcompose.db.DummyProjectDatabase
 import com.nuhin13.cleanarchitecturewithjetpackcompose.db.UserInfo
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation.LoginScreen
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation.RegistrationScreen
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.SetupNavGraph
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.rememberWindowSize
 import com.nuhin13.cleanarchitecturewithjetpackcompose.ui.theme.CleanArchitectureWithJetpackComposeTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,14 +39,20 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             CleanArchitectureWithJetpackComposeTheme {
+
+                val window = rememberWindowSize()
+                val navController = rememberNavController()
+                SetupNavGraph(windowSize = window, navController = navController)
+
+
                 // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
-                ) {
-                    //Greeting("Android", db = dummyProjectDatabase)
-//                    LoginScreen()
-                RegistrationScreen()
-                }
+//                Surface(
+//                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
+//                ) {
+//                    //Greeting("Android", db = dummyProjectDatabase)
+////                    LoginScreen()
+//                //RegistrationScreen()
+//                }
             }
         }
     }

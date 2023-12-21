@@ -24,11 +24,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.nuhin13.cleanarchitecturewithjetpackcompose.R
 import com.nuhin13.cleanarchitecturewithjetpackcompose.data.ConstantData
 
 @Composable
-fun RegistrationScreen() {
+fun RegistrationScreen(navController: NavHostController) {
 
     var phone by rememberSaveable { mutableStateOf("") }
     var pin by rememberSaveable { mutableStateOf("") }
@@ -94,6 +95,6 @@ fun RegistrationScreen() {
 @Preview(showBackground = true)
 @Composable
 fun RegistrationScreenPreview() {
-    RegistrationScreen()
+    //RegistrationScreen()
 }
 

@@ -5,4 +5,6 @@
     <string name="login_new_account">Create New Account</string>
     <string name="login_skip">Skip</string>
     <string name="login">Login</string>
+    
+    <string name="registration">Registration</string>
 </resources>

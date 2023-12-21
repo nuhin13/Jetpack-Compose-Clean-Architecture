@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -24,6 +25,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -58,19 +60,19 @@ fun LoginScreen() {
                     .padding(16.dp)
             )
 
-            OutlinedTextField(value = phone,
-                onValueChange = { phone = it }, label = {
-                    Text("Enter Your Phone Number")
-                },
+            EditTextWidget(
+                value = phone,
+                onValueChange = { phone = it }, label = "Enter Your Phone Number",
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 16.dp, end = 16.dp, bottom = 10.dp)
             )
 
-            OutlinedTextField(value = pin,
-                onValueChange = { pin = it }, label = {
-                    Text("Enter Your Pin")
-                },
+            EditTextWidget(
+                value = pin,
+                onValueChange = { pin = it }, label = "Enter Your Pin",
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 16.dp, end = 16.dp)

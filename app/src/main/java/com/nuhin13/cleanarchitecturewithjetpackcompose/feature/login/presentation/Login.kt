@@ -33,9 +33,13 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.nuhin13.cleanarchitecturewithjetpackcompose.R
 import com.nuhin13.cleanarchitecturewithjetpackcompose.data.ConstantData
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.LoginScreen
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.RegistrationScreen
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.SplashScreen
+import javax.security.auth.login.LoginException
 
 @Composable
-fun LoginScreen(navController: NavHostController) {
+fun LoginView(navController: NavHostController) {
 
     val imageUrl = ConstantData.imageList[random()]
     var phone by rememberSaveable { mutableStateOf("") }
@@ -94,7 +98,7 @@ fun LoginScreen(navController: NavHostController) {
         Row(
             modifier = Modifier
                 .align(Alignment.End)
-                .padding(top = 24.dp ,end = 16.dp, bottom = 40.dp)
+                .padding(top = 24.dp, end = 16.dp, bottom = 40.dp)
                 .weight(1f, false),
         ) {
             ClickableText(
@@ -102,7 +106,7 @@ fun LoginScreen(navController: NavHostController) {
                 modifier = Modifier.padding(end = 40.dp),
                 style = TextStyle(textDecoration = TextDecoration.Underline),
                 onClick = {
-
+                    navController.navigate(RegistrationScreen.route)
                 }
             )
 

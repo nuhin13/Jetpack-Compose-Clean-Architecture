@@ -23,26 +23,14 @@ import kotlinx.coroutines.withContext
 
 class MainActivity : ComponentActivity() {
 
-    private lateinit var dummyProjectDatabase: DummyProjectDatabase
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        dummyProjectDatabase = Room.databaseBuilder(
-            this, DummyProjectDatabase::class.java, "DUMMY_DATABASE"
-        ).build()
 
         setContent {
             CleanArchitectureWithJetpackComposeTheme {
 
                 val window = rememberWindowSize()
                 val navController = rememberNavController()
-
-                val isBackButtonVisible by remember {
-                    derivedStateOf {
-                        navController.previousBackStackEntry != null
-                    }
-                }
 
                 SetupNavGraph(windowSize = window, navController = navController)
 

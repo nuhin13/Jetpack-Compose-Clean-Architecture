@@ -25,6 +25,9 @@ interface UserInfoDao {
     @Query("SELECT * FROM user_info WHERE id = :id")
     suspend fun fetchById(id: Long): UserInfo
 
+    @Query("SELECT * FROM user_info WHERE phoneNumber = :phone")
+    suspend fun fetchByPhone(phone: String): UserInfo?
+
     @Query("DELETE FROM user_info")
     suspend fun deleteAll()
     @Query("DELETE FROM user_info WHERE id = :id")

@@ -1,5 +1,7 @@
 package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,11 +18,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
@@ -33,9 +37,13 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.nuhin13.cleanarchitecturewithjetpackcompose.R
 import com.nuhin13.cleanarchitecturewithjetpackcompose.data.ConstantData
+import com.nuhin13.cleanarchitecturewithjetpackcompose.db.DatabaseManager
+import com.nuhin13.cleanarchitecturewithjetpackcompose.db.UserInfo
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.HomeScreen
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.LoginScreen
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.RegistrationScreen
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.SplashScreen
+import kotlinx.coroutines.launch
 import javax.security.auth.login.LoginException
 
 @Composable
@@ -44,6 +52,10 @@ fun LoginView(navController: NavHostController) {
     val imageUrl = ConstantData.imageList[random()]
     var phone by rememberSaveable { mutableStateOf("") }
     var pin by rememberSaveable { mutableStateOf("") }
+
+    val coroutineScope = rememberCoroutineScope()
+    val context = LocalContext.current
+
 
     Column(verticalArrangement = Arrangement.SpaceBetween) {
         Column {
@@ -84,7 +96,11 @@ fun LoginView(navController: NavHostController) {
             )
 
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    coroutineScope.launch {
+                        checkValidInput(phone, pin, context, navController)
+                    }
+                },
                 shape = MaterialTheme.shapes.small,
                 modifier = Modifier
                     .padding(top = 8.dp, end = 16.dp)
@@ -119,6 +135,28 @@ fun LoginView(navController: NavHostController) {
             )
         }
     }
+}
+
+private suspend fun checkValidInput(
+    phone: String, pin: String, context: Context, navController: NavHostController
+) {
+    if (phone.isEmpty() || pin.isEmpty()) {
+        Toast.makeText(context, "Please Fill the Info", Toast.LENGTH_LONG).show()
+        return
+    }
+
+    val userDb = DatabaseManager.getInstance(context).userInfoDao
+    val user = userDb.fetchByPhone(phone)
+
+    if (user == null) {
+        Toast.makeText(context, "User Not Found", Toast.LENGTH_LONG).show()
+        return
+    } else if (user.pin != pin) {
+        Toast.makeText(context, "Password Not Matched", Toast.LENGTH_LONG).show()
+        return
+    }
+
+    navController.navigate(HomeScreen.route)
 }
 
 @Preview(showBackground = true)

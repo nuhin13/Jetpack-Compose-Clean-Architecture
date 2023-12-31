@@ -13,7 +13,7 @@ import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.splash.SplashView
 fun SetupNavGraph(windowSize: WindowSize, navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = SplashScreen.route
+        startDestination = HomeScreen.route
     ) {
         composable(route = SplashScreen.route) {
             SplashView(navHostController = navController)

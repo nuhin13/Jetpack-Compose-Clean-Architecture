@@ -1,4 +1,4 @@
-package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home
+package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.presentaion
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

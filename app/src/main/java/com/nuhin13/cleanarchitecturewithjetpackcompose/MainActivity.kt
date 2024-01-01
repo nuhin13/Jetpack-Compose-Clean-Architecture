@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -15,14 +16,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import androidx.room.Room
 import com.nuhin13.cleanarchitecturewithjetpackcompose.db.DummyProjectDatabase
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.domain.PostViewModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.SetupNavGraph
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.rememberWindowSize
 import com.nuhin13.cleanarchitecturewithjetpackcompose.ui.theme.CleanArchitectureWithJetpackComposeTheme
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+//@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

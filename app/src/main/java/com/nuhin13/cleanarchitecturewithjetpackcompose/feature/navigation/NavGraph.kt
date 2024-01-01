@@ -4,8 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.HomeView
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.PostItemList
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.presentaion.HomeView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation.LoginView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation.RegistrationView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.postdetails.presentation.PostDetailsView

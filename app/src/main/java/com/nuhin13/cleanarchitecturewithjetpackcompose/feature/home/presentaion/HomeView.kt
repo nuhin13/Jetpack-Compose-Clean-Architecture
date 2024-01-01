@@ -1,4 +1,4 @@
-package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home
+package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.presentaion
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -19,10 +20,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.nuhin13.cleanarchitecturewithjetpackcompose.R
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.domain.PostViewModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.UserListScreen
+
 
 @Composable
 fun HomeView(navController: NavHostController) {
+
+    val postViewModel = PostViewModel()
+
+    LaunchedEffect(Unit) {
+        postViewModel.fetchPostList()
+    }
+
     Column {
         Row(
             modifier = Modifier

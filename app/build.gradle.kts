@@ -108,14 +108,17 @@ dependencies {
 
     // For DI (Hilt)
 
-    val hiltVersion = "2.48"
+    val hiltVersion = "2.50"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
-    //implementation ("androidx.hilt:hilt-work:1.1.0")
-
     ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
     //coil dependency
     implementation("io.coil-kt:coil-compose:2.5.0")
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
 }
 

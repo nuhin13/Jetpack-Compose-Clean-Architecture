@@ -64,7 +64,7 @@ fun HomeView(navController: NavHostController) {
             }
         }
 
-        PostItemList()
+        PostItemList(navController = navController)
     }
 }
 

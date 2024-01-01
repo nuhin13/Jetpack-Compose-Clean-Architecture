@@ -2,6 +2,7 @@ package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -30,7 +31,8 @@ import com.nuhin13.cleanarchitecturewithjetpackcompose.R
 
 
 @Composable
-fun PostItem(description: String, imageLink: String, likeCount: String, ownerImage: String) {
+fun PostItem(description: String, imageLink: String, likeCount: String, ownerImage: String,
+             onClick: (String) -> Unit) {
     val gradient = Brush.linearGradient(
         colors = listOf(Color.Gray, Color.Transparent),
         start = Offset(20f, 100f),
@@ -41,6 +43,9 @@ fun PostItem(description: String, imageLink: String, likeCount: String, ownerIma
         modifier = Modifier
             .height(250.dp)
             .clip(RoundedCornerShape(6.dp))
+            .clickable {
+                onClick(imageLink)
+            },
     ) {
 
         SubcomposeAsyncImage(
@@ -103,6 +108,7 @@ fun PostItemPreview() {
         description = "This is a description",
         imageLink = "https://picsum.photos/300/300",
         likeCount = "100",
-        ownerImage = "https://picsum.photos/300/300"
+        ownerImage = "https://picsum.photos/300/300",
+        onClick = {}
     )
 }

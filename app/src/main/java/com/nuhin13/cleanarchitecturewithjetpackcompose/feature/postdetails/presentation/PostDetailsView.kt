@@ -1,4 +1,4 @@
-package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.user.presentation
+package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.postdetails.presentation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,12 +22,12 @@ import com.nuhin13.cleanarchitecturewithjetpackcompose.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UserListView(navController: NavHostController) {
+fun PostDetailsView(navController: NavHostController) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = stringResource(id = R.string.user_list))
+                    Text(text = stringResource(id = R.string.post_details))
                 },
                 navigationIcon = {
                     IconButton(onClick = {
@@ -40,16 +40,44 @@ fun UserListView(navController: NavHostController) {
         }
     ) { innerPadding ->
         Column(
-            modifier = Modifier.padding(innerPadding),
+            modifier = Modifier.padding(innerPadding).padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            UserItemList()
+
+            val postInfo = PostInfo(
+                description = "This is a description",
+                imageLink = "https://picsum.photos/300/300",
+                likeCount = "100",
+                tags = arrayListOf("tag1", "tag2", "tag3"),
+                publishDate = "12/12/12"
+            )
+
+            PostSection(postInfo)
+
+
+            val userInfo = Owner(
+                name = "Nuhin",
+                proPic = "https://picsum.photos/300/300"
+            )
+
+            UserSection(userInfo)
+
+            val comment = Comment(
+                message = "This is a comment",
+                publishDate = "12/12/12",
+                owner = Owner(
+                    name = "Nuhin",
+                    proPic = "https://picsum.photos/300/300"
+                )
+            )
+
+            CommentItemList()
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun UserViewPreview() {
-    UserListView(navController = NavHostController(LocalContext.current))
+fun PostDetailsPreview() {
+    PostDetailsView(navController = NavHostController(LocalContext.current))
 }

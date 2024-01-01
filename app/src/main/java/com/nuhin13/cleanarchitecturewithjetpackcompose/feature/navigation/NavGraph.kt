@@ -5,8 +5,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.HomeView
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.PostItemList
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation.LoginView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation.RegistrationView
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.postdetails.presentation.PostDetailsView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.splash.SplashView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.user.presentation.UserListView
 
@@ -30,6 +32,9 @@ fun SetupNavGraph(windowSize: WindowSize, navController: NavHostController) {
         }
         composable(route = UserListScreen.route) {
             UserListView(navController = navController)
+        }
+        composable(route = PostDetailsScreen.route) {
+            PostDetailsView(navController = navController)
         }
     }
 }

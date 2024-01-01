@@ -8,6 +8,7 @@ import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.HomeView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation.LoginView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation.RegistrationView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.splash.SplashView
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.user.presentation.UserListView
 
 @Composable
 fun SetupNavGraph(windowSize: WindowSize, navController: NavHostController) {
@@ -26,6 +27,9 @@ fun SetupNavGraph(windowSize: WindowSize, navController: NavHostController) {
         }
         composable(route = HomeScreen.route) {
             HomeView(navController = navController)
+        }
+        composable(route = UserListScreen.route) {
+            UserListView(navController = navController)
         }
     }
 }

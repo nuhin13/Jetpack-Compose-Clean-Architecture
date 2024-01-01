@@ -10,22 +10,23 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.domain.PostViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.user.domain.UserViewModel
 
 @Composable
-fun UserItemList() {
+fun UserItemList(userViewModel: UserViewModel = viewModel()) {
 
-    val postViewModel = UserViewModel()
+    val userList = userViewModel.userResponse.collectAsState()
+    val itemsList = userList.value?: arrayListOf()
 
     LaunchedEffect(Unit) {
-        postViewModel.fetchUserList()
+        userViewModel.fetchUserList()
     }
-
-    val itemsList = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6")
 
     LazyVerticalGrid(
         modifier = Modifier.fillMaxSize(),
@@ -36,8 +37,8 @@ fun UserItemList() {
     ) {
         items(itemsList) { item ->
             UserItem(
-                description = "This is a description",
-                imageLink = "https://picsum.photos/300/300"
+                description = item.title?:"",
+                imageLink = item.picture?:""
             )
 
             Spacer(modifier = Modifier.padding(10.dp))

@@ -9,16 +9,24 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.domain.PostViewModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.PostDetailsScreen
 
 @Composable
-fun PostItemList(navController: NavHostController) {
+fun PostItemList(navController: NavHostController, postViewModel: PostViewModel) {
 
-    val itemsList = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6")
+    val postList = postViewModel.postResponse.collectAsState()
+    val itemsList = postList.value?: arrayListOf()
+
+    LaunchedEffect(Unit) {
+        postViewModel.fetchPostList()
+    }
 
     LazyVerticalGrid(
         modifier = Modifier.fillMaxSize(),
@@ -29,10 +37,10 @@ fun PostItemList(navController: NavHostController) {
     ) {
         items(itemsList) { item ->
             PostItem(
-                description = "This is a description",
-                imageLink = "https://picsum.photos/300/300",
-                likeCount = "100",
-                ownerImage = "https://picsum.photos/300/300",
+                description = item.text?:"",
+                imageLink = item.image?:"",
+                likeCount = item.likes.toString(),
+                ownerImage = item.owner.picture?:"",
                 onClick = {
                     navController.navigate(PostDetailsScreen.route)
                 }

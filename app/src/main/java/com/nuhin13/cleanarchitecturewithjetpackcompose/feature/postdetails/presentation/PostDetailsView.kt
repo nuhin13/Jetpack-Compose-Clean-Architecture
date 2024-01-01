@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -25,13 +26,7 @@ import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.user.domain.UserV
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PostDetailsView(navController: NavHostController) {
-
-    val postViewModel = PostDetailsViewModel()
-
-    LaunchedEffect(Unit) {
-        postViewModel.fetchPostCommentList()
-    }
+fun PostDetailsView(navController: NavHostController, postViewModel: PostDetailsViewModel = PostDetailsViewModel()) {
 
     Scaffold(
         topBar = {
@@ -81,7 +76,7 @@ fun PostDetailsView(navController: NavHostController) {
                 )
             )
 
-            CommentItemList()
+            CommentItemList(postViewModel = postViewModel)
         }
     }
 }
@@ -89,5 +84,5 @@ fun PostDetailsView(navController: NavHostController) {
 @Preview(showBackground = true)
 @Composable
 fun PostDetailsPreview() {
-    PostDetailsView(navController = NavHostController(LocalContext.current))
+    //PostDetailsView(navController = NavHostController(LocalContext.current))
 }

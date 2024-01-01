@@ -9,14 +9,12 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,6 +22,8 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -33,15 +33,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
 import com.nuhin13.cleanarchitecturewithjetpackcompose.R
-import com.nuhin13.cleanarchitecturewithjetpackcompose.db.UserInfo
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.user.presentation.UserItem
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.postdetails.domain.PostDetailsViewModel
 
 data class PostInfo(
     val description: String,
@@ -250,9 +248,14 @@ fun PostItem(description: String, imageLink: String, likeCount: String, ownerIma
 }
 
 @Composable
-fun CommentItemList() {
+fun CommentItemList(postViewModel: PostDetailsViewModel) {
 
-    val itemsList = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6")
+    val postList = postViewModel.commentResponse.collectAsState()
+    val itemsList = postList.value?: arrayListOf()
+
+    LaunchedEffect(Unit) {
+        postViewModel.fetchPostCommentList("60d21bf867d0d8992e610e98")
+    }
 
     Text(
         text = "Comment List",
@@ -367,6 +370,7 @@ fun PostItemPreview() {
 //
 //    CommentItem(comment)
 
-    CommentItemList()
+
+//    CommentItemList()
 
 }

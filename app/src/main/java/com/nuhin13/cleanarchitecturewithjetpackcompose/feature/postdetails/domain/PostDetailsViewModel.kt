@@ -3,22 +3,26 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.nuhin13.cleanarchitecturewithjetpackcompose.data.models.post.PostApiModel
+import com.nuhin13.cleanarchitecturewithjetpackcompose.data.models.post.PostCommentApiModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.data.models.post.PostCommentApiResponse
 import com.nuhin13.cleanarchitecturewithjetpackcompose.data.models.user.UserApiResponse
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.postdetails.data.CommentRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class PostDetailsViewModel : ViewModel() {
     private val repository = CommentRepository()
 
-    private val _commentApi = MutableLiveData<PostCommentApiResponse>()
-    val commentResponse: LiveData<PostCommentApiResponse> = _commentApi
+    private val _commentApi = MutableStateFlow<ArrayList<PostCommentApiModel>?>(null)
+    val commentResponse: StateFlow<ArrayList<PostCommentApiModel>?> = _commentApi
 
-    fun fetchPostCommentList() {
+    fun fetchPostCommentList(postId:String) {
         viewModelScope.launch {
             try {
-                val cards = repository.getPostComment("60d21bf867d0d8992e610e98")
-                _commentApi.postValue(cards)
+                val cards = repository.getPostComment(postId)
+                _commentApi.value = cards.data
             } catch (e: Exception) {
                 e.printStackTrace()
             }

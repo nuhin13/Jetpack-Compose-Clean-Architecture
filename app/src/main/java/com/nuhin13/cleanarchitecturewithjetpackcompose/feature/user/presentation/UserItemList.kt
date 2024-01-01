@@ -9,12 +9,21 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.domain.PostViewModel
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.user.domain.UserViewModel
 
 @Composable
 fun UserItemList() {
+
+    val postViewModel = UserViewModel()
+
+    LaunchedEffect(Unit) {
+        postViewModel.fetchUserList()
+    }
 
     val itemsList = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6")
 

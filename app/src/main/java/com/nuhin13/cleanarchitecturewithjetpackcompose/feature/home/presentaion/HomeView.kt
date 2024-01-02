@@ -19,15 +19,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.nuhin13.cleanarchitecturewithjetpackcompose.R
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.domain.PostViewModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.UserListScreen
+import dagger.hilt.android.AndroidEntryPoint
 
 
 @Composable
-fun HomeView(navController: NavHostController, postViewModel: PostViewModel = viewModel()) {
+fun HomeView(navController: NavHostController, postViewModel: PostViewModel = hiltViewModel()) {
 
     Column {
         Row(
@@ -74,8 +76,8 @@ fun HomeView(navController: NavHostController, postViewModel: PostViewModel = vi
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun HomeViewPreview() {
-    HomeView(navController = NavHostController(LocalContext.current))
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun HomeViewPreview() {
+//    HomeView(navController = NavHostController(LocalContext.current))
+//}

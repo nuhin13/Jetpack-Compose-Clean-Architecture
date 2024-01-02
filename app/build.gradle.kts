@@ -106,12 +106,15 @@ dependencies {
     // Test helpers
     testImplementation("androidx.room:room-testing:$roomVersion")
 
-
     // For DI (Hilt)
 
     val hiltVersion = "2.50"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
+
+    ksp("androidx.hilt:hilt-compiler:1.1.0")
+    implementation("androidx.hilt:hilt-navigation-fragment:1.1.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
 
     //coil dependency
     implementation("io.coil-kt:coil-compose:2.5.0")

@@ -1,12 +1,8 @@
 package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.postdetails.domain
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nuhin13.cleanarchitecturewithjetpackcompose.data.models.post.PostApiModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.data.models.post.PostCommentApiModel
-import com.nuhin13.cleanarchitecturewithjetpackcompose.data.models.post.PostCommentApiResponse
-import com.nuhin13.cleanarchitecturewithjetpackcompose.data.models.user.UserApiResponse
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.postdetails.data.CommentRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,7 +14,7 @@ class PostDetailsViewModel : ViewModel() {
     private val _commentApi = MutableStateFlow<ArrayList<PostCommentApiModel>?>(null)
     val commentResponse: StateFlow<ArrayList<PostCommentApiModel>?> = _commentApi
 
-    fun fetchPostCommentList(postId:String) {
+    fun fetchPostCommentList(postId: String) {
         viewModelScope.launch {
             try {
                 val cards = repository.getPostComment(postId)

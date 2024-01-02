@@ -1,9 +1,13 @@
 package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
+import com.nuhin13.cleanarchitecturewithjetpackcompose.data.models.post.PostApiModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.presentaion.HomeView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation.LoginView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation.RegistrationView
@@ -32,8 +36,16 @@ fun SetupNavGraph(windowSize: WindowSize, navController: NavHostController) {
         composable(route = UserListScreen.route) {
             UserListView(navController = navController)
         }
-        composable(route = PostDetailsScreen.route) {
-            PostDetailsView(navController = navController)
+
+        composable(
+            route = PostDetailsScreen.route,
+        ) {
+            //var userObject: PostApiModel? = null
+
+            //LaunchedEffect(key1 = it) {
+                val userObject = navController.previousBackStackEntry?.savedStateHandle?.get<PostApiModel>("post_model")
+                userObject?.let { PostDetailsView(navController = navController, postModel = it) }
+            //}
         }
     }
 }

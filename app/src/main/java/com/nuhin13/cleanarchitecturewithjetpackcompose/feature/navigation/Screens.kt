@@ -6,5 +6,4 @@ data object RegistrationScreen : Screens("registration_screen")
 data object SplashScreen : Screens("splash_screen")
 data object HomeScreen : Screens("home_screen")
 data object UserListScreen : Screens("user_list_screen")
-data object PostDetailsScreen : Screens("post_details_screen")
-
+data object PostDetailsScreen : Screens(route = "post_details_screen")

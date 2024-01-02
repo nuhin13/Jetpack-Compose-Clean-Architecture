@@ -21,12 +21,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.nuhin13.cleanarchitecturewithjetpackcompose.R
+import com.nuhin13.cleanarchitecturewithjetpackcompose.data.models.post.PostApiModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.postdetails.domain.PostDetailsViewModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.user.domain.UserViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PostDetailsView(navController: NavHostController, postViewModel: PostDetailsViewModel = PostDetailsViewModel()) {
+fun PostDetailsView(navController: NavHostController,
+                    postModel: PostApiModel) {
 
     Scaffold(
         topBar = {
@@ -50,33 +52,23 @@ fun PostDetailsView(navController: NavHostController, postViewModel: PostDetails
         ) {
 
             val postInfo = PostInfo(
-                description = "This is a description",
-                imageLink = "https://picsum.photos/300/300",
-                likeCount = "100",
-                tags = arrayListOf("tag1", "tag2", "tag3"),
-                publishDate = "12/12/12"
+                description = postModel.text?: "No description",
+                imageLink = postModel.image?: "https://picsum.photos/300/300",
+                likeCount = postModel.likes.toString(),
+                tags = postModel.tags,
+                publishDate = postModel.publishDate?: "12/12/12",
             )
 
             PostSection(postInfo)
 
-
             val userInfo = Owner(
-                name = "Nuhin",
-                proPic = "https://picsum.photos/300/300"
+                name =  postModel.owner.title + " " + postModel.owner.firstName + " " + postModel.owner.lastName,
+                proPic = postModel.owner.picture?: "https://picsum.photos/300/300"
             )
 
             UserSection(userInfo)
 
-            val comment = Comment(
-                message = "This is a comment",
-                publishDate = "12/12/12",
-                owner = Owner(
-                    name = "Nuhin",
-                    proPic = "https://picsum.photos/300/300"
-                )
-            )
-
-            CommentItemList(postViewModel = postViewModel)
+            CommentItemList(postId = postModel.id)
         }
     }
 }

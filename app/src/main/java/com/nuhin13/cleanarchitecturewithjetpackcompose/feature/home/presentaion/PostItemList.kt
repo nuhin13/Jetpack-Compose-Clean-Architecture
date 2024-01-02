@@ -42,6 +42,9 @@ fun PostItemList(navController: NavHostController, postViewModel: PostViewModel)
                 likeCount = item.likes.toString(),
                 ownerImage = item.owner.picture?:"",
                 onClick = {
+                    navController.currentBackStackEntry?.savedStateHandle?.set("post_model", item) // new
+
+                    //navController.navigate(PostDetailsScreen.route + "/${item.id}" )
                     navController.navigate(PostDetailsScreen.route)
                 }
             )

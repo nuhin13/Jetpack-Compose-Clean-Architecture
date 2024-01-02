@@ -248,13 +248,14 @@ fun PostItem(description: String, imageLink: String, likeCount: String, ownerIma
 }
 
 @Composable
-fun CommentItemList(postViewModel: PostDetailsViewModel) {
+fun CommentItemList(postId:String,
+                    postViewModel: PostDetailsViewModel = PostDetailsViewModel()) {
 
     val postList = postViewModel.commentResponse.collectAsState()
     val itemsList = postList.value?: arrayListOf()
 
     LaunchedEffect(Unit) {
-        postViewModel.fetchPostCommentList("60d21bf867d0d8992e610e98")
+        postViewModel.fetchPostCommentList(postId)
     }
 
     Text(
@@ -273,16 +274,15 @@ fun CommentItemList(postViewModel: PostDetailsViewModel) {
     ) {
         items(itemsList) { item ->
             val comment =  Comment(
-                message = "This is a comment",
-                publishDate = "12/12/12",
+                message = item.message?:"",
+                publishDate = item.publishDate?:"",
                 owner = Owner(
-                    name = "Nuhin",
-                    proPic = "https://picsum.photos/300/300"
+                    name = item.owner.title + " " + item.owner.firstName + " " + item.owner.lastName,
+                    proPic = item.owner.picture?:"https://picsum.photos/300/300"
                 )
             )
 
             CommentItem(comment)
-
             Spacer(modifier = Modifier.padding(10.dp))
         }
     }

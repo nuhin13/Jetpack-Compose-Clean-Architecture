@@ -53,21 +53,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier, db: DummyProjectDatabase) {
-
-    /*CoroutineScope(Dispatchers.Default).launch(Dispatchers.Default) {
-
-    }*/
-
-
-    LaunchedEffect(Unit) {
-        withContext(Dispatchers.IO) {
-            //db.userInfoDao.upsert(UserInfo(phoneNumber = "99999", pin = "123", email = "ssss", id = 6))
-            //db.userInfoDao.insert(UserInfo(phoneNumber = "00111", pin = "123", email = "ssss", id = 9))
-            Log.e("THIS is log", db.userInfoDao.fetchAll().toString())
-            Log.e("THIS is log", db.userInfoDao.fetchById(1) .toString())
-        }
-    }
-
     Text(
         text = "Hello $name!", modifier = modifier
     )

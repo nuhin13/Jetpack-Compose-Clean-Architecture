@@ -1,4 +1,4 @@
-package com.nuhin13.cleanarchitecturewithjetpackcompose.db
+package com.nuhin13.cleanarchitecturewithjetpackcompose.db.table
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

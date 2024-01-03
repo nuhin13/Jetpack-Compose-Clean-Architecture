@@ -2,7 +2,7 @@
 //
 //import android.app.Application
 //import androidx.lifecycle.ViewModelProvider
-//import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation.viewmodel.RegistrationViewModel
+//import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation.viewmodel.com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.registration.domain.RegistrationViewModel
 //import dagger.Module
 //import dagger.Provides
 //import dagger.hilt.InstallIn

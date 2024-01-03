@@ -4,12 +4,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nuhin13.cleanarchitecturewithjetpackcompose.data.models.post.PostCommentApiModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.postdetails.data.CommentRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PostDetailsViewModel : ViewModel() {
-    private val repository = CommentRepository()
+@HiltViewModel
+class PostDetailsViewModel @Inject constructor() : ViewModel() {
+
+    @Inject
+    lateinit var repository: CommentRepository
 
     private val _commentApi = MutableStateFlow<ArrayList<PostCommentApiModel>?>(null)
     val commentResponse: StateFlow<ArrayList<PostCommentApiModel>?> = _commentApi

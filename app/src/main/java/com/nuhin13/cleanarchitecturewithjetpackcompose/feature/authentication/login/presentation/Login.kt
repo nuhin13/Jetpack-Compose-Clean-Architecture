@@ -1,4 +1,4 @@
-package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation
+package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.login.presentation
 
 import android.content.Context
 import android.widget.Toast
@@ -13,7 +13,6 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -33,21 +32,19 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.nuhin13.cleanarchitecturewithjetpackcompose.R
 import com.nuhin13.cleanarchitecturewithjetpackcompose.data.ConstantData
-import com.nuhin13.cleanarchitecturewithjetpackcompose.db.DatabaseManager
-import com.nuhin13.cleanarchitecturewithjetpackcompose.db.UserInfo
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.login.domain.LoginViewModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.HomeScreen
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.LoginScreen
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.RegistrationScreen
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.SplashScreen
+import com.nuhin13.cleanarchitecturewithjetpackcompose.ui.common.EditTextWidget
 import kotlinx.coroutines.launch
-import javax.security.auth.login.LoginException
 
 @Composable
-fun LoginView(navController: NavHostController) {
+fun LoginView(navController: NavHostController, loginViewModel: LoginViewModel = hiltViewModel()) {
 
     val imageUrl = ConstantData.imageList[random()]
     var phone by rememberSaveable { mutableStateOf("") }
@@ -98,7 +95,7 @@ fun LoginView(navController: NavHostController) {
             Button(
                 onClick = {
                     coroutineScope.launch {
-                        checkValidInput(phone, pin, context, navController)
+                        loginViewModel.checkValidInput(phone, pin, navController)
                     }
                 },
                 shape = MaterialTheme.shapes.small,
@@ -135,28 +132,6 @@ fun LoginView(navController: NavHostController) {
             )
         }
     }
-}
-
-private suspend fun checkValidInput(
-    phone: String, pin: String, context: Context, navController: NavHostController
-) {
-    if (phone.isEmpty() || pin.isEmpty()) {
-        Toast.makeText(context, "Please Fill the Info", Toast.LENGTH_LONG).show()
-        return
-    }
-
-    val userDb = DatabaseManager.getInstance(context).userInfoDao
-    val user = userDb.fetchByPhone(phone)
-
-    if (user == null) {
-        Toast.makeText(context, "User Not Found", Toast.LENGTH_LONG).show()
-        return
-    } else if (user.pin != pin) {
-        Toast.makeText(context, "Password Not Matched", Toast.LENGTH_LONG).show()
-        return
-    }
-
-    navController.navigate(HomeScreen.route)
 }
 
 @Preview(showBackground = true)

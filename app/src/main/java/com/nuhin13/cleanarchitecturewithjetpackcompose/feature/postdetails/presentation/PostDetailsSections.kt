@@ -37,6 +37,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.SubcomposeAsyncImage
 import com.nuhin13.cleanarchitecturewithjetpackcompose.R
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.postdetails.domain.PostDetailsViewModel
@@ -249,7 +250,7 @@ fun PostItem(description: String, imageLink: String, likeCount: String, ownerIma
 
 @Composable
 fun CommentItemList(postId:String,
-                    postViewModel: PostDetailsViewModel = PostDetailsViewModel()) {
+                    postViewModel: PostDetailsViewModel = hiltViewModel()) {
 
     val postList = postViewModel.commentResponse.collectAsState()
     val itemsList = postList.value?: arrayListOf()

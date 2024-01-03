@@ -1,16 +1,13 @@
 package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
 import com.nuhin13.cleanarchitecturewithjetpackcompose.data.models.post.PostApiModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.presentaion.HomeView
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation.LoginView
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation.RegistrationView
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.login.presentation.LoginView
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.registration.presentation.RegistrationView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.postdetails.presentation.PostDetailsView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.splash.SplashView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.user.presentation.UserListView
@@ -19,7 +16,7 @@ import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.user.presentation
 fun SetupNavGraph(windowSize: WindowSize, navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = HomeScreen.route
+        startDestination = SplashScreen.route
     ) {
         composable(route = SplashScreen.route) {
             SplashView(navHostController = navController)

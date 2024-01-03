@@ -1,4 +1,4 @@
-package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.login.presentation
+package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.registration.presentation
 
 import android.content.Context
 import android.widget.Toast
@@ -33,15 +33,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.nuhin13.cleanarchitecturewithjetpackcompose.R
-import com.nuhin13.cleanarchitecturewithjetpackcompose.db.DatabaseManager
-import com.nuhin13.cleanarchitecturewithjetpackcompose.db.UserInfo
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.registration.domain.RegistrationViewModel
+import com.nuhin13.cleanarchitecturewithjetpackcompose.ui.common.EditTextWidget
+import com.nuhin13.cleanarchitecturewithjetpackcompose.ui.common.commonEditTextModifier
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegistrationView(navController: NavHostController) {
+fun RegistrationView(
+    navController: NavHostController,
+    registrationViewModel: RegistrationViewModel = hiltViewModel()
+) {
 
     var phone by rememberSaveable { mutableStateOf("") }
     var pin by rememberSaveable { mutableStateOf("") }
@@ -113,7 +118,7 @@ fun RegistrationView(navController: NavHostController) {
             Button(
                 onClick = {
                     coroutineScope.launch {
-                        checkValidInput(phone, pin, confirmPin, email, context)
+                        checkValidInput(phone, pin, confirmPin, email, context, registrationViewModel)
                     }
                 },
                 shape = MaterialTheme.shapes.small,
@@ -128,7 +133,8 @@ fun RegistrationView(navController: NavHostController) {
 }
 
 private suspend fun checkValidInput(
-    phone: String, pin: String, confirmPin: String, email: String, context: Context
+    phone: String, pin: String, confirmPin: String, email: String, context: Context,
+    registrationViewModel: RegistrationViewModel
 ) {
     if (phone.isEmpty() || pin.isEmpty() || confirmPin.isEmpty()) {
         Toast.makeText(context, "Please Fill the Info", Toast.LENGTH_LONG).show()
@@ -140,15 +146,15 @@ private suspend fun checkValidInput(
         return
     }
 
-    addUser(context, phone, email, pin)
+    registrationViewModel.addUser(phone, email, pin)
 }
 
-private suspend fun addUser(context: Context, phone: String, email: String, pin: String) {
-    val userDb = DatabaseManager.getInstance(context).userInfoDao
-    userDb.insert(UserInfo(phoneNumber = phone, pin = pin, email = email))
-
-    Toast.makeText(context, "Successfully Added", Toast.LENGTH_LONG).show()
-}
+//private suspend fun addUser(context: Context, phone: String, email: String, pin: String) {
+//    val userDb = DatabaseManager.getInstance(context).userInfoDao
+//    userDb.insert(UserInfo(phoneNumber = phone, pin = pin, email = email))
+//
+//    Toast.makeText(context, "Successfully Added", Toast.LENGTH_LONG).show()
+//}
 
 
 @Preview(showBackground = true)

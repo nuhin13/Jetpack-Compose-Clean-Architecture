@@ -18,7 +18,9 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.nuhin13.cleanarchitecturewithjetpackcompose.HiltTestRunner"
+
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -70,16 +72,22 @@ dependencies {
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.test:runner:1.5.2")
+    implementation ("androidx.arch.core:core-testing:2.2.0")
 
     // For Testing Purpose
 
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
 
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    testImplementation("org.mockito:mockito-core:5.0.0")
+    androidTestImplementation("org.mockito:mockito-android:2.24.5")
 
     // For Jetpack Compose
 
@@ -115,6 +123,16 @@ dependencies {
     ksp("androidx.hilt:hilt-compiler:1.1.0")
     implementation("androidx.hilt:hilt-navigation-fragment:1.1.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+
+    // Hilt testing dependency
+    androidTestImplementation ("com.google.dagger:hilt-android-testing:$hiltVersion")
+    // Make Hilt generate code in the androidTest folder
+    kaptAndroidTest ("com.google.dagger:hilt-android-compiler:$hiltVersion")
+
+    // For Robolectric tests.
+    testImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
+    // ...with Kotlin.
+    kaptTest("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
     //coil dependency
     implementation("io.coil-kt:coil-compose:2.5.0")

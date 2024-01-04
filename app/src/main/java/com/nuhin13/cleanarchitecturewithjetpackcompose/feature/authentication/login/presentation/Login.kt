@@ -1,7 +1,5 @@
 package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.login.presentation
 
-import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -42,6 +40,7 @@ import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.HomeSc
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.RegistrationScreen
 import com.nuhin13.cleanarchitecturewithjetpackcompose.ui.common.EditTextWidget
 import kotlinx.coroutines.launch
+
 
 @Composable
 fun LoginView(navController: NavHostController, loginViewModel: LoginViewModel = hiltViewModel()) {
@@ -133,6 +132,9 @@ fun LoginView(navController: NavHostController, loginViewModel: LoginViewModel =
         }
     }
 }
+
+
+
 
 @Preview(showBackground = true)
 @Composable

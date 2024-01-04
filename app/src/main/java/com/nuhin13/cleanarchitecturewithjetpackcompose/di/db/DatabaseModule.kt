@@ -1,4 +1,4 @@
-package com.nuhin13.cleanarchitecturewithjetpackcompose.di.network
+package com.nuhin13.cleanarchitecturewithjetpackcompose.di.db
 
 import android.content.Context
 import androidx.room.Room
@@ -9,6 +9,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -16,12 +17,16 @@ import javax.inject.Singleton
 object DatabaseModule {
     @Provides
     @Singleton
+    @Named("Dummy_Database")
     fun provideAppDatabase(@ApplicationContext appContext: Context): DummyProjectDatabase {
-        return Room.databaseBuilder(
+        return Room.inMemoryDatabaseBuilder(appContext, DummyProjectDatabase::class.java)
+            .allowMainThreadQueries().build()
+
+        /*return Room.databaseBuilder(
             appContext,
             DummyProjectDatabase::class.java,
             "Dummy_Database"
-        ).build()
+        ).build()*/
     }
     @Provides
     @Singleton

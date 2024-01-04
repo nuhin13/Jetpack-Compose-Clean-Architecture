@@ -53,4 +53,18 @@ class UserInfoDaoTest {
 
         assertEquals(allUsers[0], user)
     }
+
+    @Test
+    fun `fetch by phone checking`() = runBlocking {
+        val user = UserInfo(
+            phoneNumber = "01712924002",
+            pin = "1234",
+            email = "nuhin.ll.com",
+            id = 1
+        )
+        userDao.insert(user)
+        val allUsers = userDao.fetchByPhone("01712924002")
+
+        assertEquals(allUsers, user)
+    }
 }

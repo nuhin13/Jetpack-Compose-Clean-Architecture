@@ -15,4 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "CleanArchitectureWithJetpackCompose"
 include(":app")
- 
+include(":data")
+include(":domain")
+include(":dependencies")

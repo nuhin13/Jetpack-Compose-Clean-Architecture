@@ -6,7 +6,7 @@ import com.nuhin13.data.db.dao.UserInfoDao
 import com.nuhin13.data.db.table.UserInfo
 
 @Database(
-    entities = [UserInfo::class], version = 1
+    entities = [UserInfo::class], version = 12
 )
 abstract class DummyProjectDatabase : RoomDatabase() {
     abstract fun userInfoDao(): UserInfoDao

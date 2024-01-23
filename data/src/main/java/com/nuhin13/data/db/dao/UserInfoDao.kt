@@ -10,18 +10,18 @@ interface UserInfoDao {
     @Insert
     suspend fun insert(entity: UserInfo)
 
-    @Query("SELECT * FROM user_info")
+    @Query("SELECT * FROM user_info11")
     suspend fun fetchAll(): List<UserInfo>
 
-    @Query("SELECT * FROM user_info WHERE id = :id")
+    @Query("SELECT * FROM user_info11 WHERE id = :id")
     suspend fun fetchById(id: Long): UserInfo
 
-    @Query("SELECT * FROM user_info WHERE phoneNumber = :phone")
+    @Query("SELECT * FROM user_info11 WHERE phoneNumber = :phone")
     suspend fun fetchByPhone(phone: String): UserInfo?
 
-    @Query("DELETE FROM user_info")
+    @Query("DELETE FROM user_info11")
     suspend fun deleteAll()
 
-    @Query("DELETE FROM user_info WHERE id = :id")
+    @Query("DELETE FROM user_info11 WHERE id = :id")
     suspend fun deleteById(id: Int)
 }

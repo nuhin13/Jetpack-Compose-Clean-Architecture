@@ -17,16 +17,16 @@ import javax.inject.Singleton
 object DatabaseModule {
     @Provides
     @Singleton
-    @Named("Dummy_Database")
+    //@Named("Dummy_Database")
     fun provideAppDatabase(@ApplicationContext appContext: Context): DummyProjectDatabase {
-        return Room.inMemoryDatabaseBuilder(appContext, DummyProjectDatabase::class.java)
-            .allowMainThreadQueries().build()
+       /* return Room.inMemoryDatabaseBuilder(appContext, DummyProjectDatabase::class.java)
+            .allowMainThreadQueries().build()*/
 
-        /*return Room.databaseBuilder(
+        return Room.databaseBuilder(
             appContext,
             DummyProjectDatabase::class.java,
             "Dummy_Database"
-        ).build()*/
+        ).build()
     }
     @Provides
     @Singleton

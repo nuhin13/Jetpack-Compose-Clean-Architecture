@@ -3,7 +3,9 @@ package com.nuhin13.domain.feature.authentication.repository
 import com.nuhin13.domain.feature.authentication.entity.*
 
 interface AuthenticationUseCase {
-    fun doLogin(loginReq: LoginReq){}
-    fun doRegistration(registrationReq: RegistrationReq){}
+    suspend fun doLogin(loginReq: LoginReq){}
+    suspend fun doRegistration(registrationReq: RegistrationReq): Boolean {
+        return false
+    }
     fun doForgetPassword(forgetPasswordReq: ForgetPasswordReq){}
 }

@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.SubcomposeAsyncImage
 import com.nuhin13.cleanarchitecturewithjetpackcompose.data.ConstantData
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.login.presentation.random
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.login.screens.random
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.LoginScreen
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.SplashScreen
 import kotlinx.coroutines.delay

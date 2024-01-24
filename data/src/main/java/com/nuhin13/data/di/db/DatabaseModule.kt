@@ -3,7 +3,7 @@ package com.nuhin13.data.di.db
 import android.content.Context
 import androidx.room.Room
 import com.nuhin13.data.db.DummyProjectDatabase
-import com.nuhin13.data.db.dao.UserInfoDao
+import com.nuhin13.data.features.authentication.db.dao.UserInfoDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

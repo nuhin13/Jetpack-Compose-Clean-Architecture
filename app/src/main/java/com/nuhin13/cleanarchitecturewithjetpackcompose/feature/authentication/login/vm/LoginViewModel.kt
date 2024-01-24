@@ -1,4 +1,4 @@
-package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.login.domain
+package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.login.vm
 
 import android.content.Context
 import android.widget.Toast
@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import com.nuhin13.cleanarchitecturewithjetpackcompose.db.dao.UserInfoDao
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.HomeScreen
 import com.nuhin13.domain.entities.Password
 import com.nuhin13.domain.entities.PhoneNumber
 import com.nuhin13.domain.feature.authentication.entity.LoginReq
@@ -18,7 +17,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val userInfoDao: UserInfoDao,
     private val  authenticationUseCase: AuthenticationUseCase,
     @ApplicationContext private val appContext: Context
 ) : ViewModel() {
@@ -51,14 +49,14 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun validity(){
+    fun validity() {
         if (isValidMobile("01700000000")) {
             Toast.makeText(appContext, "Valid Mobile", Toast.LENGTH_LONG).show()
         } else {
             Toast.makeText(appContext, "Invalid Mobile", Toast.LENGTH_LONG).show()
         }
 
-        if (isValidEmail("fff")){
+        if (isValidEmail("fff")) {
             Toast.makeText(appContext, "Valid Email", Toast.LENGTH_LONG).show()
         } else {
             Toast.makeText(appContext, "Invalid Email", Toast.LENGTH_LONG).show()

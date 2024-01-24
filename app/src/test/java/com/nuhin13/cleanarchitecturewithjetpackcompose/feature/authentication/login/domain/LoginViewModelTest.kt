@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.Toast
 import androidx.navigation.NavHostController
 import com.nuhin13.cleanarchitecturewithjetpackcompose.db.dao.UserInfoDao
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.login.vm.LoginViewModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.HomeScreen
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*

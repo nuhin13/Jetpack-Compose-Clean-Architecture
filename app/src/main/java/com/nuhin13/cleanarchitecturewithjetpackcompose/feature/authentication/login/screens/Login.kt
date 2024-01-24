@@ -1,4 +1,4 @@
-package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.login.presentation
+package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.login.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -35,12 +35,10 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.nuhin13.cleanarchitecturewithjetpackcompose.R
 import com.nuhin13.cleanarchitecturewithjetpackcompose.data.ConstantData
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.login.domain.LoginViewModel
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.HomeScreen
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.login.vm.LoginViewModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.RegistrationScreen
 import com.nuhin13.cleanarchitecturewithjetpackcompose.ui.common.EditTextWidget
 import kotlinx.coroutines.launch
-
 
 @Composable
 fun LoginView(navController: NavHostController, loginViewModel: LoginViewModel = hiltViewModel()) {
@@ -50,8 +48,6 @@ fun LoginView(navController: NavHostController, loginViewModel: LoginViewModel =
     var pin by rememberSaveable { mutableStateOf("") }
 
     val coroutineScope = rememberCoroutineScope()
-    val context = LocalContext.current
-
 
     Column(verticalArrangement = Arrangement.SpaceBetween) {
         Column {

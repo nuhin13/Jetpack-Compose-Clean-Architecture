@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(private val authenticationRepository: AuthenticationRepository) :
     AuthenticationUseCase {
-    override fun doLogin(loginReq: LoginReq) {
+    override suspend fun doLogin(loginReq: LoginReq) {
         println("From LoginUseCase $loginReq")
         authenticationRepository.login(loginReq)
     }

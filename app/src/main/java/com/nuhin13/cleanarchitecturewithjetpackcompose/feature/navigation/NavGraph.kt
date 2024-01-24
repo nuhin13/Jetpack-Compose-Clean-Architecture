@@ -6,8 +6,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.nuhin13.cleanarchitecturewithjetpackcompose.data.models.post.PostApiModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.presentaion.HomeView
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.login.presentation.LoginView
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.registration.presentation.RegistrationView
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.login.screens.LoginView
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.registration.screens.RegistrationView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.postdetails.presentation.PostDetailsView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.splash.SplashView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.user.presentation.UserListView

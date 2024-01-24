@@ -1,11 +1,8 @@
-package com.aliasadi.domain.util
+package com.nuhin13.domain.util
 
-import com.aliasadi.domain.util.Result.Error
-import com.aliasadi.domain.util.Result.Success
+import com.nuhin13.domain.util.Result.Error
+import com.nuhin13.domain.util.Result.Success
 
-/**
- * Created by Ali Asadi on 13/05/2020
- */
 sealed class Result<T> {
     data class Success<T>(val data: T) : Result<T>()
     data class Error<T>(val error: Throwable) : Result<T>()

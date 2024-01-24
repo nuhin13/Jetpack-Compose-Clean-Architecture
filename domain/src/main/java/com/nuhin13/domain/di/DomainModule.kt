@@ -3,6 +3,7 @@ package com.nuhin13.domain.di
 import com.nuhin13.domain.feature.authentication.repository.AuthenticationRepository
 import com.nuhin13.domain.feature.authentication.repository.AuthenticationUseCase
 import com.nuhin13.domain.feature.authentication.usecase.LoginUseCase
+import com.nuhin13.domain.feature.authentication.usecase.RegistrationUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -17,5 +18,11 @@ class DomainModule {
     @Reusable
     fun provideLoginUseCase(authenticationRepository: AuthenticationRepository): AuthenticationUseCase {
         return LoginUseCase(authenticationRepository)
+    }
+
+    @Provides
+    @Reusable
+    fun provideRegistrationUseCase(authenticationRepository: AuthenticationRepository): AuthenticationUseCase {
+        return RegistrationUseCase(authenticationRepository)
     }
 }

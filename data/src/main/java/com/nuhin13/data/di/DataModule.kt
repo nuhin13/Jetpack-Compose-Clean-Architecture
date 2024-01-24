@@ -1,6 +1,9 @@
 package com.nuhin13.data.di
 
 import com.nuhin13.data.features.authentication.AuthRepoImpl
+import com.nuhin13.data.features.authentication.datasource.AuthenticationDataSource
+import com.nuhin13.data.features.authentication.datasource.AuthenticationLocalSourceImpl
+import com.nuhin13.data.features.authentication.db.dao.UserInfoDao
 import com.nuhin13.domain.feature.authentication.repository.AuthenticationRepository
 import dagger.Module
 import dagger.Provides
@@ -15,7 +18,14 @@ class DataModule {
 
     @Provides
     @Reusable
-    fun provideAuthRepo(): AuthenticationRepository {
-        return AuthRepoImpl()
+    fun provideAuthRepo(authenticationDataSource: AuthenticationDataSource): AuthenticationRepository {
+        return AuthRepoImpl(authenticationDataSource)
+    }
+
+    @Provides
+    @Singleton
+    @Reusable
+    fun provideAuthDataSource(userInfoDao: UserInfoDao): AuthenticationDataSource {
+        return AuthenticationLocalSourceImpl(userInfoDao)
     }
 }

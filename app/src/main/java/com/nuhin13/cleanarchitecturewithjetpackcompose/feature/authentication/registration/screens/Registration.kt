@@ -1,4 +1,4 @@
-package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.registration.presentation
+package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.registration.screens
 
 import android.content.Context
 import android.widget.Toast
@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.nuhin13.cleanarchitecturewithjetpackcompose.R
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.registration.domain.RegistrationViewModel
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.registration.vm.RegistrationViewModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.ui.common.EditTextWidget
 import com.nuhin13.cleanarchitecturewithjetpackcompose.ui.common.commonEditTextModifier
 import kotlinx.coroutines.launch

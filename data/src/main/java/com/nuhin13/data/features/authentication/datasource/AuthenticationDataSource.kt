@@ -7,6 +7,6 @@ import kotlinx.coroutines.flow.emptyFlow
 
 interface AuthenticationDataSource {
     suspend fun storeRegistrationData(registrationReq: RegistrationReq): Boolean
-    suspend fun checkLoginInfo(loginReq: LoginReq): Flow<UserInfo>
+    suspend fun checkLoginInfo(loginReq: LoginReq):UserInfo
     suspend fun forgetPassword(email: Email): Flow<String> = emptyFlow()
 }

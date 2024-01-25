@@ -5,11 +5,11 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
-import com.nuhin13.cleanarchitecturewithjetpackcompose.db.dao.UserInfoDao
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.HomeScreen
 import com.nuhin13.domain.entities.Password
 import com.nuhin13.domain.entities.PhoneNumber
 import com.nuhin13.domain.feature.authentication.entity.LoginReq
-import com.nuhin13.domain.feature.authentication.repository.AuthenticationUseCase
+import com.nuhin13.domain.feature.authentication.usecase.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val  authenticationUseCase: AuthenticationUseCase,
+    private val  loginUseCase: LoginUseCase,
     @ApplicationContext private val appContext: Context
 ) : ViewModel() {
 
@@ -30,22 +30,18 @@ class LoginViewModel @Inject constructor(
         }
 
         viewModelScope.launch {
-            authenticationUseCase.doLogin(
+            val login = loginUseCase.doLogin(
                 LoginReq(
                     phoneNumber = PhoneNumber(number = phone),
                     password = Password(password = pin)
                 )
             )
 
-//            val user = userInfoDao.fetchByPhone(phone)
-//
-//            if (user == null) {
-//                Toast.makeText(appContext, "User Not Found", Toast.LENGTH_LONG).show()
-//            } else if (user.pin != pin) {
-//                Toast.makeText(appContext, "Password Not Matched", Toast.LENGTH_LONG).show()
-//            } else {
-//                navController.navigate(HomeScreen.route)
-//            }
+            if (login != "Success") {
+                Toast.makeText(appContext, login, Toast.LENGTH_LONG).show()
+            } else {
+                navController.navigate(HomeScreen.route)
+            }
         }
     }
 

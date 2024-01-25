@@ -7,7 +7,6 @@ import com.nuhin13.data.features.authentication.db.dao.UserInfoDao
 import com.nuhin13.domain.feature.authentication.repository.AuthenticationRepository
 import dagger.Module
 import dagger.Provides
-import dagger.Reusable
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
@@ -17,14 +16,13 @@ import javax.inject.Singleton
 class DataModule {
 
     @Provides
-    @Reusable
+    @Singleton
     fun provideAuthRepo(authenticationDataSource: AuthenticationDataSource): AuthenticationRepository {
         return AuthRepoImpl(authenticationDataSource)
     }
 
     @Provides
     @Singleton
-    @Reusable
     fun provideAuthDataSource(userInfoDao: UserInfoDao): AuthenticationDataSource {
         return AuthenticationLocalSourceImpl(userInfoDao)
     }

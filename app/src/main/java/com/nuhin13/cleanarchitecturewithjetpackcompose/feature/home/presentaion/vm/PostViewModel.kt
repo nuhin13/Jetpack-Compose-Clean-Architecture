@@ -1,4 +1,4 @@
-package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.domain
+package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.presentaion.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

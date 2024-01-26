@@ -1,4 +1,4 @@
-package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.presentaion
+package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.presentaion.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.domain.PostViewModel
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.presentaion.vm.PostViewModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.PostDetailsScreen
 
 @Composable

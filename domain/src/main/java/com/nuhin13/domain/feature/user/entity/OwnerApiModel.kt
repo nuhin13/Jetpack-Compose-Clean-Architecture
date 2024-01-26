@@ -1,4 +1,4 @@
-package com.nuhin13.data.dtos.user
+package com.nuhin13.domain.feature.user.entity
 
 data class OwnerApiModel(
     val firstName: String?,

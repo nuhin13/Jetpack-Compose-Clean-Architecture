@@ -1,6 +1,6 @@
-package com.nuhin13.data.dtos.post
+package com.nuhin13.domain.feature.post.entity
 
-import com.nuhin13.data.dtos.user.OwnerApiModel
+import com.nuhin13.domain.feature.user.entity.OwnerApiModel
 
 data class PostApiModel(
     val id: String,

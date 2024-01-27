@@ -1,8 +1,8 @@
 package com.nuhin13.data.api
 
-import com.nuhin13.data.dtos.post.PostApiResponse
-import com.nuhin13.data.dtos.post.PostCommentApiResponse
-import com.nuhin13.data.dtos.user.UserApiResponse
+import com.nuhin13.data.features.post.dtos.PostApiResponse
+import com.nuhin13.data.features.post.dtos.PostCommentApiResponse
+import com.nuhin13.data.features.user.dtos.UserApiResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 

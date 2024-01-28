@@ -19,7 +19,7 @@ import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.vm.PostViewM
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.PostDetailsScreen
 
 @Composable
-fun PostItemList(navController: NavHostController, postViewModel: PostViewModel) {
+fun PostItemListSection(navController: NavHostController, postViewModel: PostViewModel) {
 
     val postList = postViewModel.postResponse.collectAsState()
     val itemsList = postList.value
@@ -36,7 +36,7 @@ fun PostItemList(navController: NavHostController, postViewModel: PostViewModel)
         columns = GridCells.Fixed(2)
     ) {
         items(itemsList.postList) { item ->
-            PostItem(
+            PostItemSection(
                 postItem = item,
                 onClick = {
                     navController.currentBackStackEntry?.savedStateHandle?.set("post_item", item)

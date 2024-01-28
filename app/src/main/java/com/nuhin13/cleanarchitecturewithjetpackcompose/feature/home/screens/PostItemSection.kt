@@ -24,7 +24,7 @@ import com.nuhin13.cleanarchitecturewithjetpackcompose.R
 import com.nuhin13.domain.feature.post.entity.PostItem
 
 @Composable
-fun PostItem(postItem: PostItem, onClick: (String) -> Unit) {
+fun PostItemSection(postItem: PostItem, onClick: (String) -> Unit) {
     val gradient = Brush.linearGradient(
         colors = listOf(Color.Gray, Color.Transparent),
         start = Offset(20f, 100f),

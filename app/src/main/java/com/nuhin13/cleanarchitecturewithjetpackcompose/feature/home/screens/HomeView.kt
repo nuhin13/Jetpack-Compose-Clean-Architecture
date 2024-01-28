@@ -66,7 +66,7 @@ fun HomeView(navController: NavHostController, postViewModel: PostViewModel = hi
             }
         }
 
-        PostItemList(navController = navController, postViewModel = postViewModel)
+        PostItemListSection(navController = navController, postViewModel = postViewModel)
     }
 }
 

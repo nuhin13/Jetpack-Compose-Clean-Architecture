@@ -1,3 +1,5 @@
+package com.nuhin13.data.di.network
+
 import com.nuhin13.data.api.ApiService
 import dagger.Module
 import dagger.Provides
@@ -7,7 +9,6 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -15,7 +16,6 @@ import javax.inject.Singleton
 class NetworkModule {
     @Provides
     @Singleton
-    @Named("okhttp1")
     fun provideOkHttpClient(): OkHttpClient {
         val builder = OkHttpClient.Builder()
             .readTimeout(60, TimeUnit.SECONDS)
@@ -32,7 +32,6 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    @Named("retrofit1")
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://dummyapi.io/data/")
@@ -43,7 +42,6 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    @Named("apiService1")
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }

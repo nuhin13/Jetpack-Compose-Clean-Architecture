@@ -1,4 +1,4 @@
-package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.user.presentation
+package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.postdetails.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,21 +13,22 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.nuhin13.cleanarchitecturewithjetpackcompose.R
+import com.nuhin13.domain.feature.post.entity.PostItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UserListView(navController: NavHostController) {
+fun PostDetailsView(navController: NavHostController,
+                    postModel: PostItem) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = stringResource(id = R.string.user_list))
+                    Text(text = stringResource(id = R.string.post_details))
                 },
                 navigationIcon = {
                     IconButton(onClick = {
@@ -40,16 +41,21 @@ fun UserListView(navController: NavHostController) {
         }
     ) { innerPadding ->
         Column(
-            modifier = Modifier.padding(innerPadding),
+            modifier = Modifier.padding(innerPadding).padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            UserItemList()
+
+            PostInfoSection(postModel)
+
+            UserSection(postModel.owner ?: error("Owner is null"))
+
+            CommentItemListSection(postId = postModel.id)
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun UserViewPreview() {
-    UserListView(navController = NavHostController(LocalContext.current))
+fun PostDetailsPreview() {
+    //PostDetailsView(navController = NavHostController(LocalContext.current))
 }

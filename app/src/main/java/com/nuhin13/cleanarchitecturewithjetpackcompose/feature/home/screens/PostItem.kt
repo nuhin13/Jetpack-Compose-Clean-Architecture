@@ -1,16 +1,9 @@
-package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.presentaion.screens
+package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -28,11 +21,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import com.nuhin13.cleanarchitecturewithjetpackcompose.R
-
+import com.nuhin13.domain.feature.post.entity.PostItem
 
 @Composable
-fun PostItem(description: String, imageLink: String, likeCount: String, ownerImage: String,
-             onClick: (String) -> Unit) {
+fun PostItem(postItem: PostItem, onClick: (String) -> Unit) {
     val gradient = Brush.linearGradient(
         colors = listOf(Color.Gray, Color.Transparent),
         start = Offset(20f, 100f),
@@ -44,12 +36,12 @@ fun PostItem(description: String, imageLink: String, likeCount: String, ownerIma
             .height(250.dp)
             .clip(RoundedCornerShape(6.dp))
             .clickable {
-                onClick(imageLink)
+                onClick(postItem.imageLink ?: "")
             },
     ) {
 
         SubcomposeAsyncImage(
-            model = imageLink,
+            model = postItem.imageLink,
             contentDescription = null,
             contentScale = ContentScale.FillBounds,
             modifier = Modifier
@@ -64,7 +56,7 @@ fun PostItem(description: String, imageLink: String, likeCount: String, ownerIma
                 .background(brush = gradient)
         ) {
             Text(
-                text = description,
+                text = postItem.description ?: "",
                 modifier = Modifier
                     .weight(1f)
                     .padding(10.dp),
@@ -83,13 +75,13 @@ fun PostItem(description: String, imageLink: String, likeCount: String, ownerIma
                 )
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
-                    text = likeCount,
+                    text = postItem.likeCount.toString(),
                 )
             }
         }
 
         SubcomposeAsyncImage(
-            model = ownerImage,
+            model = postItem.owner?.profilePic,
             contentDescription = null,
             contentScale = ContentScale.FillBounds,
             modifier = Modifier
@@ -104,11 +96,11 @@ fun PostItem(description: String, imageLink: String, likeCount: String, ownerIma
 @Preview(showBackground = true)
 @Composable
 fun PostItemPreview() {
-    PostItem(
+    /*PostItem(
         description = "This is a description",
         imageLink = "https://picsum.photos/300/300",
         likeCount = "100",
         ownerImage = "https://picsum.photos/300/300",
         onClick = {}
-    )
+    )*/
 }

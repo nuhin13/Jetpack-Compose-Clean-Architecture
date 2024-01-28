@@ -1,4 +1,4 @@
-package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.postdetails.presentation
+package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.user.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,23 +13,21 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.nuhin13.cleanarchitecturewithjetpackcompose.R
-import com.nuhin13.cleanarchitecturewithjetpackcompose.data.models.post.PostApiModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PostDetailsView(navController: NavHostController,
-                    postModel: PostApiModel) {
-
+fun UserListView(navController: NavHostController) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = stringResource(id = R.string.post_details))
+                    Text(text = stringResource(id = R.string.user_list))
                 },
                 navigationIcon = {
                     IconButton(onClick = {
@@ -42,34 +40,16 @@ fun PostDetailsView(navController: NavHostController,
         }
     ) { innerPadding ->
         Column(
-            modifier = Modifier.padding(innerPadding).padding(16.dp),
+            modifier = Modifier.padding(innerPadding),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-
-            val postInfo = PostInfo(
-                description = postModel.text?: "No description",
-                imageLink = postModel.image?: "https://picsum.photos/300/300",
-                likeCount = postModel.likes.toString(),
-                tags = postModel.tags,
-                publishDate = postModel.publishDate?: "12/12/12",
-            )
-
-            PostSection(postInfo)
-
-            val userInfo = Owner(
-                name =  postModel.owner.title + " " + postModel.owner.firstName + " " + postModel.owner.lastName,
-                proPic = postModel.owner.picture?: "https://picsum.photos/300/300"
-            )
-
-            UserSection(userInfo)
-
-            CommentItemList(postId = postModel.id)
+            UserItemListSection()
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun PostDetailsPreview() {
-    //PostDetailsView(navController = NavHostController(LocalContext.current))
+fun UserViewPreview() {
+    UserListView(navController = NavHostController(LocalContext.current))
 }

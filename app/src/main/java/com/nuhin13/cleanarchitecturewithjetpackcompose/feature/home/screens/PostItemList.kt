@@ -1,4 +1,4 @@
-package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.presentaion.screens
+package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,14 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.presentaion.vm.PostViewModel
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.vm.PostViewModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.PostDetailsScreen
 
 @Composable
 fun PostItemList(navController: NavHostController, postViewModel: PostViewModel) {
 
     val postList = postViewModel.postResponse.collectAsState()
-    val itemsList = postList.value?: arrayListOf()
+    val itemsList = postList.value
 
     LaunchedEffect(Unit) {
         postViewModel.fetchPostList()
@@ -35,15 +35,11 @@ fun PostItemList(navController: NavHostController, postViewModel: PostViewModel)
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         columns = GridCells.Fixed(2)
     ) {
-        items(itemsList) { item ->
+        items(itemsList.postList) { item ->
             PostItem(
-                description = item.text?:"",
-                imageLink = item.image?:"",
-                likeCount = item.likes.toString(),
-                ownerImage = item.owner.picture?:"",
+                postItem = item,
                 onClick = {
-                    navController.currentBackStackEntry?.savedStateHandle?.set("post_model", item) // new
-
+                    navController.currentBackStackEntry?.savedStateHandle?.set("post_item", item)
                     //navController.navigate(PostDetailsScreen.route + "/${item.id}" )
                     navController.navigate(PostDetailsScreen.route)
                 }

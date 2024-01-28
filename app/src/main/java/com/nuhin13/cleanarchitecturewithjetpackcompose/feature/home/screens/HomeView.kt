@@ -1,4 +1,4 @@
-package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.presentaion.screens
+package com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.nuhin13.cleanarchitecturewithjetpackcompose.R
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.presentaion.vm.PostViewModel
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.vm.PostViewModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.UserListScreen
 
 

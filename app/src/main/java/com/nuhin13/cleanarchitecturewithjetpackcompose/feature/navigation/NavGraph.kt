@@ -4,13 +4,13 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.nuhin13.cleanarchitecturewithjetpackcompose.data.models.post.PostApiModel
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.presentaion.screens.HomeView
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.screens.HomeView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.login.screens.LoginView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.authentication.registration.screens.RegistrationView
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.postdetails.presentation.PostDetailsView
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.postdetails.screens.PostDetailsView
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.splash.SplashView
-import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.user.presentation.UserListView
+import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.user.screens.UserListView
+import com.nuhin13.domain.feature.post.entity.PostItem
 
 @Composable
 fun SetupNavGraph(windowSize: WindowSize, navController: NavHostController) {
@@ -40,8 +40,14 @@ fun SetupNavGraph(windowSize: WindowSize, navController: NavHostController) {
             //var userObject: PostApiModel? = null
 
             //LaunchedEffect(key1 = it) {
-                val userObject = navController.previousBackStackEntry?.savedStateHandle?.get<PostApiModel>("post_model")
-                userObject?.let { PostDetailsView(navController = navController, postModel = it) }
+            val userObject = navController.previousBackStackEntry?.savedStateHandle?.get<PostItem>("post_item")
+
+            userObject?.let {
+                PostDetailsView(
+                    navController = navController,
+                    postModel = it
+                )
+            }
             //}
         }
     }

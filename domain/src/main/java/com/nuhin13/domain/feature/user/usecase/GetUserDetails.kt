@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class GetUserDetails @Inject constructor(private val userRepo: UserRepository) {
     fun getUserDetails() {
-        userRepo.getUserDetails()
+        //userRepo.getUserDetails()
     }
 }

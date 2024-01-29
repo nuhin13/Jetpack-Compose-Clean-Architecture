@@ -18,7 +18,6 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             CleanArchitectureWithJetpackComposeTheme {
-
                 val window = rememberWindowSize()
                 val navController = rememberNavController()
 

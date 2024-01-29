@@ -1,4 +1,4 @@
-package com.nuhin13.data.db
+package com.nuhin13.data.localstorage.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

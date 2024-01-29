@@ -1,4 +1,4 @@
-package com.nuhin13.data.di.db
+package com.nuhin13.data.di.localstorage.db
 
 import com.nuhin13.data.features.authentication.datasource.AuthenticationDataSource
 import com.nuhin13.data.features.authentication.datasource.AuthenticationLocalSourceImpl

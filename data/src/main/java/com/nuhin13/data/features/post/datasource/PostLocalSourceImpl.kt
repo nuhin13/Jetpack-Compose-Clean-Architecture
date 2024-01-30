@@ -5,7 +5,6 @@ import com.nuhin13.data.features.post.dtos.PostApiResponse
 import com.nuhin13.data.features.post.dtos.PostCommentApiResponse
 import com.nuhin13.data.localstorage.datastore.PrefConstant
 import com.nuhin13.data.localstorage.datastore.PreferencesDataStore
-import com.nuhin13.data.localstorage.datastore.PreferencesDataStoreImpl
 import javax.inject.Inject
 
 class PostLocalSourceImpl @Inject constructor(

@@ -73,77 +73,41 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
 
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
-    implementation("androidx.test:runner:1.5.2")
-    implementation ("androidx.arch.core:core-testing:2.2.0")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.navigation.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.runner)
+    implementation (libs.androidx.core.testing)
 
-    // For Testing Purpose
+    androidTestImplementation(platform(libs.compose.bom))
+    implementation(platform(libs.compose.bom))
 
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.bundles.compose)
 
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    androidTestImplementation(libs.compose.ui.test.junit4)
+    debugImplementation(libs.compose.ui.test.manifest)
 
-    testImplementation("org.mockito:mockito-core:5.0.0")
-    androidTestImplementation("org.mockito:mockito-android:2.24.5")
+    testImplementation(libs.junit)
+    testImplementation(libs.junit.jupiter)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 
-    // For Jetpack Compose
+    testImplementation(libs.mockito.core)
+    androidTestImplementation(libs.mockito.android)
 
-    implementation("androidx.activity:activity-compose:1.8.2")
-    implementation(platform("androidx.compose:compose-bom:2023.08.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.navigation:navigation-runtime-ktx:2.7.6")
-    implementation("androidx.navigation:navigation-compose:2.7.6")
-    implementation("androidx.compose.foundation:foundation:1.5.4")
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
 
-    implementation("androidx.compose.material3:material3")
-    debugImplementation("androidx.compose.ui:ui-tooling")
+    ksp(libs.androidx.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.fragment)
+    implementation(libs.androidx.hilt.navigation.compose)
 
-    //For Room Dependencies
+    androidTestImplementation (libs.hilt.android.testing)
+    kaptAndroidTest (libs.hilt.android.compiler)
+    testImplementation(libs.hilt.android.testing)
+    kaptTest(libs.hilt.android.compiler)
 
-    val roomVersion = "2.6.1"
-    implementation("androidx.room:room-runtime:$roomVersion")
-    ksp("androidx.room:room-compiler:$roomVersion")
-    annotationProcessor("androidx.room:room-compiler:$roomVersion")
-    // Kotlin Extensions and Coroutines support for Room
-    implementation("androidx.room:room-ktx:$roomVersion")
-    // Test helpers
-    testImplementation("androidx.room:room-testing:$roomVersion")
-
-    // For DI (Hilt)
-
-    val hiltVersion = "2.50"
-    implementation("com.google.dagger:hilt-android:$hiltVersion")
-    ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
-
-    ksp("androidx.hilt:hilt-compiler:1.1.0")
-    implementation("androidx.hilt:hilt-navigation-fragment:1.1.0")
-    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
-
-    // Hilt testing dependency
-    androidTestImplementation ("com.google.dagger:hilt-android-testing:$hiltVersion")
-    // Make Hilt generate code in the androidTest folder
-    kaptAndroidTest ("com.google.dagger:hilt-android-compiler:$hiltVersion")
-
-    // For Robolectric tests.
-    testImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
-    // ...with Kotlin.
-    kaptTest("com.google.dagger:hilt-android-compiler:$hiltVersion")
-
-    //coil dependency
-    implementation("io.coil-kt:coil-compose:2.5.0")
-
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-
+    implementation(libs.coil.compose)
 }
 

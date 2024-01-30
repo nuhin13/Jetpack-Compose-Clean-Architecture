@@ -5,11 +5,12 @@ import com.nuhin13.data.features.authentication.AuthRepoImpl
 import com.nuhin13.data.features.authentication.datasource.AuthenticationDataSource
 import com.nuhin13.data.features.post.PostRepoImpl
 import com.nuhin13.data.features.post.datasource.PostDataSource
-import com.nuhin13.data.features.post.datasource.PostDataSourceImpl
+import com.nuhin13.data.features.post.datasource.PostLocalSourceImpl
 import com.nuhin13.data.features.post.datasource.PostHttpImpl
 import com.nuhin13.data.features.user.UserRepoImpl
 import com.nuhin13.data.features.user.datasource.UserHttpDataSourceImpl
 import com.nuhin13.data.features.user.datasource.UserLocalDataSourceImpl
+import com.nuhin13.data.localstorage.datastore.PreferencesDataStore
 import com.nuhin13.domain.feature.authentication.repository.AuthenticationRepository
 import com.nuhin13.domain.feature.post.repository.PostRepository
 import com.nuhin13.domain.feature.user.repository.UserRepository
@@ -48,8 +49,8 @@ class DataModule {
     @Provides
     @Singleton
     @Named("postLocalDataSource")
-    fun providePostDataSource(postHttpImpl: PostHttpImpl): PostDataSource {
-        return PostDataSourceImpl(postHttpImpl)
+    fun providePostDataSource(postHttpImpl: PostHttpImpl, prefDataStore: PreferencesDataStore): PostDataSource {
+        return PostLocalSourceImpl(postHttpImpl, prefDataStore)
     }
 
     @Provides

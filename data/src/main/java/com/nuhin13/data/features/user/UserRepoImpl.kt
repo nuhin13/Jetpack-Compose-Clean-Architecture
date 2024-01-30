@@ -33,6 +33,4 @@ class UserRepoImpl @Inject constructor(
     override suspend fun getUserDetails(): Owner {
         TODO("Not yet implemented")
     }
-
-
 }

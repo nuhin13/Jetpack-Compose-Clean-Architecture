@@ -28,7 +28,7 @@ class DataStoreModule {
 
     @Provides
     @Singleton
-    fun providePreferencesDataStore(@ApplicationContext appContext: Context): DataStore<Preferences> =
+    fun provideDataStoreCreate(@ApplicationContext appContext: Context): DataStore<Preferences> =
         PreferenceDataStoreFactory.create(
             produceFile = {
                 appContext.preferencesDataStoreFile("DummyPreferences")

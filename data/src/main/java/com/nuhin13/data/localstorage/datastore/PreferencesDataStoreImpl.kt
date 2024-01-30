@@ -45,7 +45,11 @@ class PreferencesDataStoreImpl @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    companion object {
-        val USER_INFO = stringPreferencesKey("user_info")
+    override suspend fun saveArrayList(key: Preferences.Key<String>, list: ArrayList<*>) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getArrayList(key: Preferences.Key<String>): ArrayList<*> {
+        TODO("Not yet implemented")
     }
 }

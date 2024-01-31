@@ -6,4 +6,5 @@ interface AuthenticationRepository {
     suspend fun login(loginReq: LoginReq) : UserInfo
     suspend fun register(registrationReq: RegistrationReq) : Boolean
     suspend fun forgotPassword(forgetPasswordReq: ForgetPasswordReq)
+    suspend fun checkLoginSession() : Boolean
 }

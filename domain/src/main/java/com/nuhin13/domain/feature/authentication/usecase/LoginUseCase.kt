@@ -28,4 +28,8 @@ class LoginUseCase @Inject constructor(private val authenticationRepository: Aut
             }
         }
     }
+
+    suspend fun checkLoginSession(): Boolean {
+        return authenticationRepository.checkLoginSession()
+    }
 }

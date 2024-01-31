@@ -11,7 +11,6 @@ interface PreferencesDataStore {
     suspend fun getBoolean(key: Preferences.Key<String>): Boolean
     suspend fun saveInt(key: Preferences.Key<String>, value: Int)
     suspend fun getInt(key: Preferences.Key<String>): Int
-
     suspend fun saveArrayList(key: Preferences.Key<String>, list: ArrayList<*>)
     suspend fun getArrayList(key: Preferences.Key<String>): ArrayList<*>
 

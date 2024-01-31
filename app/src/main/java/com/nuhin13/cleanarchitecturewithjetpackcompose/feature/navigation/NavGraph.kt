@@ -13,7 +13,8 @@ import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.user.screens.User
 import com.nuhin13.domain.feature.post.entity.PostItem
 
 @Composable
-fun SetupNavGraph(windowSize: WindowSize, navController: NavHostController) {
+fun SetupNavGraph (windowSize: WindowSize, navController: NavHostController) {
+
     NavHost(
         navController = navController,
         startDestination = SplashScreen.route

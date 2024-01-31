@@ -13,7 +13,7 @@ class AuthRepoImpl @Inject constructor(private val authenticationDataSource: Aut
     override suspend fun login(loginReq: LoginReq) : UserInfo {
         println("From AuthRepoImpl  $loginReq")
 
-        return authenticationDataSource.checkLoginInfo(loginReq)
+        return authenticationDataSource.loginInfo(loginReq)
     }
 
     override suspend fun register(registrationReq: RegistrationReq): Boolean {
@@ -24,5 +24,9 @@ class AuthRepoImpl @Inject constructor(private val authenticationDataSource: Aut
 
     override suspend fun forgotPassword(forgetPasswordReq: ForgetPasswordReq) {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun checkLoginSession(): Boolean {
+        return authenticationDataSource.checkLoginSession()
     }
 }

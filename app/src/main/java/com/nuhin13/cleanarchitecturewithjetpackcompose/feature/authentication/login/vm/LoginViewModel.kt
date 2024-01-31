@@ -21,6 +21,13 @@ class LoginViewModel @Inject constructor(
     @ApplicationContext private val appContext: Context
 ) : ViewModel() {
 
+    fun checkUserLoggedInOrNot(navController: NavHostController) {
+//        viewModelScope.launch {
+//            if (loginUseCase.checkLoginSession())
+//                navController.navigate(HomeScreen.route)
+//        }
+    }
+
     fun checkValidInput(
         phone: String, pin: String, navController: NavHostController) {
 

@@ -46,11 +46,11 @@ fun SplashView(navHostController: NavHostController) {
             .padding(top = 30.dp),
         contentAlignment = Alignment.Center
     ) {
-        CircularProgressIndicator(
-            modifier = Modifier.width(70.dp),
-            color = MaterialTheme.colorScheme.secondary,
-            trackColor = MaterialTheme.colorScheme.surfaceVariant,
-        )
+//        CircularProgressIndicator(
+//            modifier = Modifier.width(70.dp),
+//            color = MaterialTheme.colorScheme.secondary,
+//            trackColor = MaterialTheme.colorScheme.surfaceVariant,
+//        )
     }
 
     LaunchedEffect(Unit) {

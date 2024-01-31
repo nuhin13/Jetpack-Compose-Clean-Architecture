@@ -1,10 +1,10 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.dagger.hilt.android")
-    kotlin("kapt")
-    id("com.google.devtools.ksp")
-    id("kotlin-parcelize")
+    alias(libs.plugins.android.version)
+    alias(libs.plugins.android.kotlin)
+    alias(libs.plugins.android.hilt)
+    alias(libs.plugins.android.devtool.ksp)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
@@ -18,7 +18,6 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        //testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner = "com.nuhin13.cleanarchitecturewithjetpackcompose.HiltTestRunner"
 
         vectorDrawables {
@@ -55,7 +54,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.7"
     }
     packaging {
         resources {
@@ -73,18 +72,21 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
 
+    // Core
     implementation(libs.androidx.core.ktx)
-    implementation(libs.navigation.runtime.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.runner)
     implementation (libs.androidx.core.testing)
 
+    // Navigation
+    implementation(libs.navigation.runtime.ktx)
+
+    // Compose
     androidTestImplementation(platform(libs.compose.bom))
     implementation(platform(libs.compose.bom))
-
-    implementation(libs.androidx.activity.compose)
     implementation(libs.bundles.compose)
 
+    // Testing
     androidTestImplementation(libs.compose.ui.test.junit4)
     debugImplementation(libs.compose.ui.test.manifest)
 
@@ -96,6 +98,7 @@ dependencies {
     testImplementation(libs.mockito.core)
     androidTestImplementation(libs.mockito.android)
 
+    // Hilts
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
@@ -108,6 +111,7 @@ dependencies {
     testImplementation(libs.hilt.android.testing)
     kaptTest(libs.hilt.android.compiler)
 
+    // Coil Image Loading
     implementation(libs.coil.compose)
 }
 

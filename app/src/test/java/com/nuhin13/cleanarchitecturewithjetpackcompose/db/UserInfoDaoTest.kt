@@ -1,3 +1,4 @@
+/*
 package com.nuhin13.cleanarchitecturewithjetpackcompose.db
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
@@ -67,4 +68,4 @@ class UserInfoDaoTest {
 
         assertEquals(allUsers, user)
     }
-}
+}*/

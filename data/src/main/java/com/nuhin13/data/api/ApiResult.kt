@@ -7,7 +7,6 @@ enum class ApiStatus {
 }
 
 sealed class ApiResult<out T>(val status: ApiStatus, val data: T?, val message: String?) {
-
     data class Success<out R>(val _data: R?) : ApiResult<R>(
         status = ApiStatus.SUCCESS,
         data = _data,
@@ -25,5 +24,4 @@ sealed class ApiResult<out T>(val status: ApiStatus, val data: T?, val message: 
         data = _data,
         message = null
     )
-
 }

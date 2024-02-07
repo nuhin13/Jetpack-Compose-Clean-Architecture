@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 
 class ApiResultHandler<T>(private val onSuccess: (T?) -> Unit, private val onFailure: (T?) -> Unit)  {
 
-    var loading = MutableLiveData<Boolean>()
+    private var loading = MutableLiveData<Boolean>()
 
     fun handleApiResult(result: ApiResult<T?>) {
         when (result.status) {

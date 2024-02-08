@@ -20,7 +20,7 @@ class PostDetailsViewModel @Inject constructor(val commentUseCase: GetPostCommen
     fun fetchPostCommentList(postId: String) {
         viewModelScope.launch {
             try {
-                _commentData.value = commentUseCase.getPostCommentList(postId)
+                //_commentData.value = commentUseCase.getPostCommentList(postId)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

@@ -1,5 +1,6 @@
-package com.nuhin13.data.api
+package com.nuhin13.data.util
 
+import com.nuhin13.domain.util.DataResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -7,24 +8,23 @@ import kotlinx.coroutines.flow.flowOn
 
 import retrofit2.Response
 
-fun <T> toResultFlow(call: suspend () -> Response<T>?): Flow<ApiResult<T>?> {
-
+fun <T> toResultFlow(call: suspend () -> Response<T>?): Flow<DataResult<T>?> {
     return flow {
-        emit(ApiResult.Loading(null, true))
-        val c = call()  /* have to initialize the call method first*/
+        emit(DataResult.Loading(null, true))
+        val c = call()
         c?.let {
             try {
                 if (c.isSuccessful && c.body() != null) {
                     c.body()?.let {
-                        emit(ApiResult.Success(it))
+                        emit(DataResult.Success(it))
                     }
                 } else {
                     c.errorBody()?.let {
-                        emit(ApiResult.Error(it.string()))
+                        emit(DataResult.Error(it.string()))
                     }
                 }
             } catch (e: Exception) {
-                emit(ApiResult.Error(e.toString()))
+                emit(DataResult.Error(e.toString()))
             }
         }
     }.flowOn(Dispatchers.IO)

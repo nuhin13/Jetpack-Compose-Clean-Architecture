@@ -11,5 +11,5 @@ interface PostApiService {
     suspend fun getPostList(): Response<PostApiResponse>
 
     @GET("v1/post/{post_id}/comment")
-    suspend fun getPostComments(@Path("post_id") postId: String): PostCommentApiResponse
+    suspend fun getPostComments(@Path("post_id") postId: String): Response<PostCommentApiResponse>
 }

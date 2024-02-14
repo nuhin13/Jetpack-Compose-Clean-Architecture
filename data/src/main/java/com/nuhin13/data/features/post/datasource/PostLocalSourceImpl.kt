@@ -14,8 +14,7 @@ import javax.inject.Inject
 class PostLocalSourceImpl @Inject constructor(
     private val postHttpImpl: PostHttpImpl,
     private val pref: PreferencesDataStore
-) :
-    PostDataSource {
+) : PostDataSource {
     override suspend fun getPostList(): Flow<DataResult<PostApiResponse>?> {
         if (pref.getJson(PrefConstant.POST_LIST).isNotEmpty()) {
             return flow {

@@ -21,7 +21,6 @@ import com.nuhin13.cleanarchitecturewithjetpackcompose.R
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.home.vm.PostViewModel
 import com.nuhin13.cleanarchitecturewithjetpackcompose.feature.navigation.UserListScreen
 
-
 @Composable
 fun HomeView(navController: NavHostController, postViewModel: PostViewModel = hiltViewModel()) {
 
